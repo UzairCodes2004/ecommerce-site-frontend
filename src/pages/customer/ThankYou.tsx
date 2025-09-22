@@ -288,46 +288,6 @@ const ThankYou = () => {
             </div>
           </div>
         </div>
-
-        {/* Next Steps */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 mt-8">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            What's Next?
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center p-4">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-blue-600 font-bold">1</span>
-              </div>
-              <h4 className="font-medium text-gray-800 mb-2">
-                Order Confirmation
-              </h4>
-              <p className="text-sm text-gray-600">
-                You'll receive an email confirmation within minutes
-              </p>
-            </div>
-            <div className="text-center p-4">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-green-600 font-bold">2</span>
-              </div>
-              <h4 className="font-medium text-gray-800 mb-2">
-                Order Processing
-              </h4>
-              <p className="text-sm text-gray-600">
-                We'll prepare your order for shipment
-              </p>
-            </div>
-            <div className="text-center p-4">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                <span className="text-purple-600 font-bold">3</span>
-              </div>
-              <h4 className="font-medium text-gray-800 mb-2">Shipping</h4>
-              <p className="text-sm text-gray-600">
-                You'll receive tracking information once shipped
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
