@@ -159,7 +159,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ productId, onSuccess }) => {
       const fd = new FormData();
       fd.append("image", imageFile); // MUST be "image" to match upload.single("image")
 
-      const axiosRes = await axios.post("http://localhost:5000/api/upload", fd, {
+      const axiosRes = await axios.post("https://ecommerce-site-backend-hthm.onrender.com/api/upload", fd, {
         headers: {
           // Do NOT set Content-Type manually; axios will set boundary
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
