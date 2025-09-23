@@ -1,6 +1,7 @@
 // src/store/authStore.ts
 import { create } from "zustand";
 import * as authService from "../services/authService";
+import * as userService from "../services/userService"; // Import userService
 import type { AuthResponse } from "../services/authService";
 import useCartStore from "./cartStore";
 
@@ -12,7 +13,7 @@ export interface User {
   isAdmin: boolean;
 }
 
-// Add setUser to your AuthState interface
+// Update AuthResponse to match your backend response
 export interface AuthState {
   user: User | null;
   token: string | null;
@@ -20,25 +21,25 @@ export interface AuthState {
   error: string | null;
   fieldErrors: Record<string, string> | null;
 
-  // Add this line
   setUser: (user: User | null) => void;
-
   login: (email: string, password: string) => Promise<{ user: User; token: string }>;
   register: (userData: any) => Promise<{ user: User; token: string }>;
   logout: () => void;
   getProfile: () => Promise<User>;
-  updateProfile: (userData: any) => Promise<User>;
+  updateProfile: (userData: any) => Promise<{ user: User; token: string }>;
   clearError: () => void;
   clearFieldError: (field: string) => void;
   initializeAuth: () => void;
 }
+
 const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   token: localStorage.getItem("token"),
   isLoading: false,
   error: null,
   fieldErrors: null,
- setUser: (user: User | null) => {
+
+  setUser: (user: User | null) => {
     set({ user });
     if (user) {
       localStorage.setItem("userInfo", JSON.stringify(user));
@@ -48,6 +49,7 @@ const useAuthStore = create<AuthState>((set, get) => ({
       useCartStore.getState().setUser("guest");
     }
   },
+
   login: async (email, password) => {
     set({ isLoading: true, error: null, fieldErrors: null });
     try {
@@ -152,7 +154,8 @@ const useAuthStore = create<AuthState>((set, get) => ({
   getProfile: async () => {
     set({ isLoading: true, error: null });
     try {
-      const data: User = await authService.getProfile();
+      // Use userService for getting profile (more appropriate)
+      const data = await userService.getProfile();
 
       const user: User = {
         _id: data._id,
@@ -186,37 +189,37 @@ const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   updateProfile: async (userData: any) => {
-    set({ isLoading: true, error: null });
-    try {
-      const data: User = await authService.updateProfile(userData);
+  set({ isLoading: true, error: null, fieldErrors: null });
+  try {
+    const data = await userService.updateProfile(userData);
 
-      const user: User = {
-        _id: data._id,
-        name: data.name,
-        email: data.email,
-        isAdmin: data.isAdmin,
-      };
+    const user: User = {
+      _id: data._id,
+      name: data.name,
+      email: data.email,
+      isAdmin: data.isAdmin,
+    };
 
-      set({ user });
-      localStorage.setItem("userInfo", JSON.stringify(user));
-      useCartStore.getState().setUser(user._id);
+    if (!user._id) throw new Error("Invalid profile update response");
 
-      return user;
-    } catch (error: any) {
-      const errorMessage =
-        error?.friendlyMessage ||
-        error?.response?.data?.message ||
-        error.message ||
-        "Profile update failed";
+    // ✅ store the refreshed token
+    set({ user, token: data.token });
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userInfo", JSON.stringify(user));
+    useCartStore.getState().setUser(user._id);
 
-      set({ error: errorMessage });
-      throw new Error(errorMessage);
-    } finally {
-      set({ isLoading: false });
-    }
-  },
+    return { user, token: data.token };
+  } catch (error: any) {
+    const errorMessage = error?.response?.data?.message || error.message || "Profile update failed";
+    set({ error: errorMessage });
+    throw new Error(errorMessage);
+  } finally {
+    set({ isLoading: false });
+  }
+},
 
-  clearError: () => set({ error: null }),
+
+  clearError: () => set({ error: null, fieldErrors: null }),
 
   clearFieldError: (field) => {
     set((state) => {

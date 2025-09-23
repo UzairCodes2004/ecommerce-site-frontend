@@ -130,13 +130,13 @@ useEffect(() => {
     setError(null);
     if (!validate()) return;
 
-    // FIX 1: Ensure prices are valid numbers
+    // Ensure prices are valid numbers
     const itemsPrice = Number(total) || 0;
     const taxPrice = Number((itemsPrice * 0.1).toFixed(2));
     const shippingPrice = 0;
     const totalPrice = itemsPrice + taxPrice + shippingPrice;
 
-    // FIX 2: Use the correct field names that your backend expects
+    // Use the correct field names that your backend expects
     const orderItems: OrderItem[] = items.map((i: any) => ({
       name: i.name,
       image: i.image,

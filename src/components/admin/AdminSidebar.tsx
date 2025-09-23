@@ -1,6 +1,6 @@
 // src/components/admin/AdminSidebar.tsx
 import { Link, useLocation } from "react-router-dom";
-import { Users, Package, ShoppingCart, BarChart3, LayoutDashboard } from "lucide-react";
+import { Users, Package, ShoppingCart, LayoutDashboard } from "lucide-react";
 import { ReactElement } from "react";
 
 interface NavLink {
