@@ -126,11 +126,12 @@ const Home = () => {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
+                  {/* FIXED SVG PATH */}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 极 0 003 15z"
+                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-10 5.002 5.002 0 10-9.78 2.096A4 4 0 003 15z"
                   />
                 </svg>
               </div>
@@ -167,8 +168,9 @@ const Home = () => {
                   className="w-12 h-12 text-gray-400"
                   fill="none"
                   stroke="currentColor"
-                  viewBox="0 极 24 24"
+                  viewBox="0 0 24 24"
                 >
+                  {/* FIXED VIEWBOX */}
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

@@ -1,8 +1,7 @@
 // src/components/cart/Cart.tsx
 import React from "react";
 import useCartStore from "../../store/cartStore";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface CartItem {
   cartItemId: string;
@@ -160,6 +159,7 @@ const Cart: React.FC = () => {
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
                           strokeLinecap="round"
@@ -185,6 +185,7 @@ const Cart: React.FC = () => {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     strokeLinecap="round"
@@ -228,7 +229,10 @@ const Cart: React.FC = () => {
               </div>
 
               {/* Checkout Button */}
-              <button  onClick={() => navigate("/checkout")} className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg mb-3 sm:mb-4">
+              <button
+                onClick={() => navigate("/checkout")}
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg mb-3 sm:mb-4"
+              >
                 Proceed to Checkout
               </button>
 
@@ -246,6 +250,7 @@ const Cart: React.FC = () => {
                     className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="currentColor"
                     viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       fillRule="evenodd"
@@ -266,7 +271,6 @@ const Cart: React.FC = () => {
         </div>
       </div>
     </div>
-    
   );
 };
 
