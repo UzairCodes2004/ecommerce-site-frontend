@@ -33,15 +33,6 @@ interface UploadResponse {
   };
 }
 
-/**
- * ProductForm.tsx
- * - Uploads image to backend (/api/upload) via productService.uploadImage (primary)
- * - Falls back to a direct axios upload if service fails (helps debug proxy/auth issues)
- * - Normalizes backend responses ({ url } or { image } or axios wrapper)
- * - Supports create and update via service functions
- * - Preserves existing image when editing (no new file selected)
- * - Cleans up preview object URLs to avoid memory leaks
- */
 
 const ProductForm: React.FC<ProductFormProps> = ({ productId, onSuccess }) => {
   const { currentProduct, fetchProductById, clearCurrentProduct, fetchProducts } = useProductStore();

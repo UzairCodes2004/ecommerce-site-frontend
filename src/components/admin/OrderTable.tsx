@@ -63,11 +63,10 @@ const OrderRow: React.FC<OrderRowProps> = ({
   return (
     <tr className="border-b hover:bg-gray-50 transition">
       <td className="px-4 py-3 font-mono text-xs">
-  {typeof order.user === "string"
-    ? order.user
-    : order.user?.name || order.user?._id || "—"}
-</td>
-
+        {typeof order.user === "string"
+          ? order.user
+          : order.user?.name || order.user?._id || "—"}
+      </td>
 
       <td className="px-4 py-3 font-mono text-sm">${total}</td>
       <td className="px-4 py-3">{paid}</td>

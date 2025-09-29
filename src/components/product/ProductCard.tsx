@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useCartStore from "../../store/cartStore";
-import Rating from "./Rating"; // ✅ make sure Rating.tsx is in same folder (src/components/product/Rating.tsx)
+import Rating from "./Rating";
 
 interface Product {
   _id: string;
@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               {product.description}
             </p>
 
-            {/* ✅ Rating Section */}
+            {/* Rating Section */}
             <div className="mb-3">
               {product.numReviews && product.numReviews > 0 ? (
                 <Rating

@@ -9,8 +9,6 @@ interface CartItem {
   price: number;
   image?: string;
   quantity: number;
-  size?: string;
-  color?: string;
 }
 
 const Cart: React.FC = () => {
@@ -105,21 +103,8 @@ const Cart: React.FC = () => {
                         ${item.price.toFixed(2)}
                       </p>
 
-                      {/* Variants */}
-                      {(item.size || item.color) && (
-                        <div className="flex flex-wrap gap-2 mt-1 sm:mt-2">
-                          {item.size && item.size !== "default" && (
-                            <span className="text-xs sm:text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded">
-                              Size: {item.size}
-                            </span>
-                          )}
-                          {item.color && item.color !== "default" && (
-                            <span className="text-xs sm:text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded">
-                              Color: {item.color}
-                            </span>
-                          )}
-                        </div>
-                      )}
+                   
+                  
                     </div>
 
                     {/* Quantity Controls */}

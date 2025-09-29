@@ -81,8 +81,8 @@ const Footer: React.FC = () => {
               {[
                 { to: "/", label: "Home" },
                 { to: "/products", label: "Products" },
-                { to: "/about", label: "About" },
-                { to: "/contact", label: "Contact" },
+                { to: "", label: "About" },
+                { to: "", label: "Contact" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -104,10 +104,10 @@ const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-3">
               {[
-                { to: "/faq", label: "FAQ" },
-                { to: "/shipping", label: "Shipping" },
-                { to: "/returns", label: "Returns" },
-                { to: "/privacy", label: "Privacy Policy" },
+                { to: "", label: "FAQ" },
+                { to: "", label: "Shipping" },
+                { to: "", label: "Returns" },
+                { to: "", label: "Privacy Policy" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
